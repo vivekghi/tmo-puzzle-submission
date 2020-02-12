@@ -14,7 +14,7 @@ export class StocksUtil {
     let returnDate = null;
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth();
-    const day = new Date().getDay();
+    const day = new Date().getDate();
     switch (value) {
         case 'max': {
             returnDate = null;
