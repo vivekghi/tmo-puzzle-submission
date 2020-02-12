@@ -19,7 +19,7 @@
 
   <mat-form-field>
     <mat-label>Favorite time period</mat-label>
-    <mat-select formControlName="period">
+    <mat-select formControlName="period" (selectionChange)="enableDate($event)">
       <mat-option
         *ngFor="let timePeriod of timePeriods"
         [value]="timePeriod.value"
@@ -28,6 +28,21 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Choose a start date</mat-label>
+    <input matInput [matDatepicker]="pickerstart" [max]="maxDate" [min]="minDate" formControlName="startDate">
+    <mat-datepicker-toggle matSuffix [for]="pickerstart"></mat-datepicker-toggle>
+    <mat-datepicker #pickerstart></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Choose an end date</mat-label>
+    <input matInput [matDatepicker]="pickerend" [max]="maxDate" [min]="minDate" formControlName="endDate">
+    <mat-datepicker-toggle matSuffix [for]="pickerend"></mat-datepicker-toggle>
+    <mat-datepicker #pickerend></mat-datepicker>
+  </mat-form-field>
+  <button (click)="fetchQuote()" mat-raised-button>Go</button>
 </form>
 
 <coding-challenge-chart [data$]="quotes$"></coding-challenge-chart>

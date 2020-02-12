@@ -10,6 +10,50 @@ export const timeperiodsInventory = [
   ];
 
 export class StocksUtil {
+  static getMinDateforCalendar(value: any): Date {
+    let returnDate = null;
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth();
+    const day = new Date().getDay();
+    switch (value) {
+        case 'max': {
+            returnDate = null;
+          break;
+        }
+        case '5y': {
+          
+            returnDate = new Date(currentYear - 5,currentMonth, day);
+          break;
+  
+        }
+        case '2y': {
+            returnDate = new Date(currentYear - 2,currentMonth, day);
+            break;
+        }
+        case '1y': {
+            returnDate = new Date(currentYear - 1,currentMonth, day);
+          break;
+        } 
+        case 'ytd': {
+            returnDate = new Date(currentYear ,0, day);
+          break;
+        }
+        case '6m': {
+          
+            returnDate.setMonth(new Date().getMonth() - 6);
+          break;
+        }
+        case '3m': {
+            returnDate.setMonth(new Date().getMonth() - 3);
+          break;
+        }
+        case '1m': {
+            returnDate.setMonth(new Date().getMonth() - 1);
+          break;
+        }
+      }
+      return returnDate;
+  }
 
 
     

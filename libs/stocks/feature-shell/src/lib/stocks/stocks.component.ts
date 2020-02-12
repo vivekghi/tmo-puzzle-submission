@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PriceQueryFacade } from '@coding-challenge/stocks/data-access-price-query';
-import {timeperiodsInventory} from './util/stocks-util';
+import {timeperiodsInventory, StocksUtil} from './util/stocks-util';
 
 @Component({
   selector: 'coding-challenge-stocks',
@@ -12,6 +12,8 @@ export class StocksComponent implements OnInit {
   stockPickerForm: FormGroup;
   symbol: string;
   period: string;
+  maxDate:Date;
+  minDate: Date;
 
   quotes$ = this.priceQuery.priceQueries$;
 
@@ -36,16 +38,28 @@ export class StocksComponent implements OnInit {
   ngOnInit() {
     this.stockPickerForm = this.fb.group({
       symbol: [null, {validators: [Validators.required],updateOn: "blur"}],
-      period: [null, {validators: [Validators.required],updateOn: "blur"}]
+      period: [null, {validators: [Validators.required],updateOn: "blur"}],
+      startDate: [{value:null, disabled:true}],
+      endDate: [{value:null,disabled:true}]
     });
-    this.stockPickerForm.valueChanges.subscribe(() => {
-      this.fetchQuote()});
+    // this.stockPickerForm.valueChanges.subscribe(() => {
+    //   this.fetchQuote()});
+    this.maxDate=new Date();
   }
 
   fetchQuote() {
     if (this.stockPickerForm.valid) {
-      const { symbol, period } = this.stockPickerForm.value;
-      this.priceQuery.fetchQuote(symbol, period);
+      const { symbol, period, startDate, endDate } = this.stockPickerForm.value;
+      this.priceQuery.fetchQuote(symbol, period, startDate, endDate);
     }
+  }
+  enableDate(form) {
+    this.stockPickerForm.get('startDate').enable();
+    this.stockPickerForm.get('endDate').enable();
+    this.setminDate(form.value);
+  }
+
+  private setminDate(value) {    
+    this.minDate = StocksUtil.getMinDateforCalendar(value);    
   }
 }
