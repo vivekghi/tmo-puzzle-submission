@@ -52,6 +52,14 @@ _**Implement this feature and make a PR from the branch `feat_custom_dates` to `
 
 > We need two date-pickers: "from" and "to". The date-pickers should not allow selection of dates after the current day. "to" cannot be before "from" (selecting an invalid range should make both dates the same value)
 
+Solution
+1. 2 material date pickers have been added as start date and end date
+2. Initially the date pickers will be disabled
+3. when user selects the time period from drop down then date pickers will be enabled
+4. The start date or minimum date of both date pickers will be in according to the time period selected by user. For example user selectes the time period as 6 months then in date pickers the minimum date that will be allowed to select (enabled ) is the date 6 months from now. Everytime the max date that can be selected from date picker is today's date
+5. Once user selects dates then Go button can be clicked. A check is there if end date < startDate then end Date becomes equal to start date
+6. The API call will go as per the time period selected after which the result will be filtered as per start and end Date selected
+
 ### Task 4
 
 ```
