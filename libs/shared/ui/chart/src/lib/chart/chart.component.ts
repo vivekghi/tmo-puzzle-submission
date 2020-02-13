@@ -13,15 +13,15 @@ import { Observable } from 'rxjs';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit {
-  @Input() data$: Observable<any>;
-  chartData: any;
+  @Input() data$: Observable<[[string]]>;
+  chartData: any; 
 
   chart: {
     title: string;
     type: string;
     data: any;
     columnNames: string[];
-    options: any;
+    options: { [name: string]: string }
   };
   constructor(private cd: ChangeDetectorRef) {}
 

@@ -20,3 +20,5 @@ export const getAllPriceQueries = createSelector(
   getPriceQueryState,
   selectAll
 );
+
+export const getIsLoading = createSelector(getPriceQueryState, state => state.isLoading)
