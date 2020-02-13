@@ -37,7 +37,11 @@ the graph is refreshed automatically without needing to click a button.
 
 _**Make a PR from the branch `feat_stock_typeahead` to `master` and provide a code review on this PR**_
 
+
+
 > Add comments to the PR. Focus on all items that you can see - this is a hypothetical example but let's treat it as a critical application. Then present these changes as another commit on the PR.
+PR is created and comments have been added in the pull request. Please refer to commnets for all the task solution
+
 
 ### Task 3
 
