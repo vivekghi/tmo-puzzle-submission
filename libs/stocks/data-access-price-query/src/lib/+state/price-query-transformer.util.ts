@@ -3,7 +3,7 @@ import { map, pick } from 'lodash-es';
 import { parse } from 'date-fns';
 
 export function transformPriceQueryResponse(
-  response: PriceQueryResponse[]
+  response: PriceQueryResponse[], startDate:Date, endDate: Date
 ): PriceQuery[] {
   return map(
     response,
@@ -23,5 +23,5 @@ export function transformPriceQueryResponse(
         ]),
         dateNumeric: parse(responseItem.date).getTime()
       } as PriceQuery)
-  );
+  ).filter(item => (item.dateNumeric >= startDate.getTime() && item.dateNumeric <= endDate.getTime()) );;
 }
