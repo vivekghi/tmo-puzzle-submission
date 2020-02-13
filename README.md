@@ -19,6 +19,8 @@ To _properly_ submit a coding challenge you must:
 We will review your copy online before and during your interview.
 
 
+
+
 # Stocks coding challenge
 
 ## How to run the application
@@ -44,17 +46,39 @@ Please provide a short code review of the base `master` branch:
 
 #### Task 1-A
 1. What is done well?
+Answer: Following things are done well
+
+=> Linting rules have been written which will help improve code quality
+=> Project Structure is good. helps reusability in terms of future component or micro app design . Also separation os concern is well handled
+=> NgRx used for state management. This is a very helpful framework for storing and maintaining state
+
 2. What would you change?
+
+
+=> For supporting extensibility we can thing of moving Material components into their own module so that we can reuse that
+=> Proper test cases for code coverge should be added
+=> Gitignore did not include covergae folder. This has been added in pull request
+=> More linting rules can be added, like limiting length of component files
+
+
+
 3. Are there any code smells or problematic implementations?
+=> Documentation is not there. TS docs can be added. Also custom comments to explain functionality can be provided
+=> Test cases were failing which have been fixed in the pull request
+=> Type definition missing as some places "any" as a type was used. Corrected in chart.component.ts
+=> There was no spinner when stocks API was in progress. Added spinner in pull request
+=> in stock.component.ts the logic written in contructor can be moved to ngonInit . We should keep the constructor as lean as possible
+
 
 > Make a PR to fix at least one of the issues that you identify
+The PR includes some of the issues - test cases fixed, type definitions added. Spinner added and logic in component constructor moved
 
 #### Task 1-B
 
 [Accessability](https://www.w3.org/WAI/GL/WCAG20/) is an important feature of all public facing websites.  
 
 > Make a PR to add accessability features to the web application
-
+Changes in PR in stock.component.html
 
 ### Task 2
 

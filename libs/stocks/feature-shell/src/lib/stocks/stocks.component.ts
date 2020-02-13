@@ -13,6 +13,7 @@ export class StocksComponent implements OnInit {
   period: string;
 
   quotes$ = this.priceQuery.priceQueries$;
+  isLoading$ = this.priceQuery.isLoading$;
 
   timePeriods = [
     { viewValue: 'All available data', value: 'max' },
@@ -25,14 +26,15 @@ export class StocksComponent implements OnInit {
     { viewValue: 'One month', value: '1m' }
   ];
 
-  constructor(private fb: FormBuilder, private priceQuery: PriceQueryFacade) {
-    this.stockPickerForm = fb.group({
+  constructor(private fb: FormBuilder, private priceQuery: PriceQueryFacade) {    
+  }
+
+  ngOnInit() {
+    this.stockPickerForm = this.fb.group({
       symbol: [null, Validators.required],
       period: [null, Validators.required]
     });
   }
-
-  ngOnInit() {}
 
   fetchQuote() {
     if (this.stockPickerForm.valid) {
