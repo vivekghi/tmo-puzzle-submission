@@ -92,3 +92,11 @@ same data. If a query is not in cache we should call-through to the API.
 _**Implement the solution and make a PR from the branch `feat_proxy_server` to `master`**_
 
 > It is important to get the implementation working before trying to organize and clean it up.
+
+The solution has been implemented in the pull request
+=> from stocks ui shell the API call will be happening to the default host
+=> the proxy config will capture any ajax call and proxy to api server
+=> In api server used library @hapi/wreck to make the http call to third party
+=> Used another library @hapi/catbox-memory for in m emory aching
+=> based on the input parameters key for caching will be created symbol:period
+=> if cache has data API call will be avoided. If not API call will happen and populate the cache
